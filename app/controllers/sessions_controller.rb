@@ -1,6 +1,7 @@
+# Agile Web Development with Rails 6 by Sam Ruby & Dave Bryant Copeland
 class SessionsController < ApplicationController
   skip_before_action :authorize
-  
+
   def new
   end
 

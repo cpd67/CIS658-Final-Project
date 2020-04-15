@@ -1,3 +1,4 @@
+# Agile Web Development with Rails 6 by Sam Ruby & Dave Bryant Copeland
 class UsersController < ApplicationController
     before_action :set_user, only [:update, :destroy]
 
