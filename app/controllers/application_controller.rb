@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action: :authorize
+    before_action :authorize
 
     include Response
     include ExceptionHandler

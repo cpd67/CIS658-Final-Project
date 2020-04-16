@@ -6,7 +6,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            json_response(@user, :created) 
+            render json: @user.as_json(:except => [password_digest]) 
         else
             render json: @user.errors, status: :unprocessable_entity
         end
@@ -28,6 +28,6 @@ class UsersController < ApplicationController
         end
 
         def user_params
-            params.permit(:id, :first_name, :last_name, :email, :username, :password, :password_confirmation)
+            params.permit(:id, :first_name, :last_name, :username, :password, :password_confirmation)
         end
 end

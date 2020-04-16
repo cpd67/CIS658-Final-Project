@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
       session[:user_id] = user.user_id
     else
       session[:user_id] = nil
+      head :no_content
     end
   end
 
   def destroy
     session[:user_id] = nil
+    head :no_content
   end
 end
