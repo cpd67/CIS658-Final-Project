@@ -5,11 +5,11 @@ class ExpensesController < ApplicationController
     # https://stackoverflow.com/questions/14824551/rendering-json-in-controller/14824660
     # https://stackoverflow.com/questions/15397537/rails-model-to-hash-exclude-attributes
     def index
-        render :json => @user.expenses.as_json(:except => [:user_id, :category_id], :include => :category)
+        render json: @user.expenses.as_json(:except => [:user_id, :category_id], :include => :category)
     end
 
     def show
-        render :json => @expense.as_json(:except => [:user_id, :category_id], :include => :category)
+        render json: @expense.as_json(:except => [:user_id, :category_id], :include => :category)
     end
 
     def create

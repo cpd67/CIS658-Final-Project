@@ -1,22 +1,36 @@
 # Agile Web Development with Rails 6 by Sam Ruby & Dave Bryant Copeland
+# https://medium.com/how-i-get-it/react-with-rails-user-authentication-8977e98762f2
 class SessionsController < ApplicationController
   skip_before_action :authorize
 
-  def new
+  def create
+    # Attempt to authenticate the User and log them in.
+    @user = User.find_by(username: params[:username])
+    if @user.try(:authenticate, params[:password])
+      login!
+      render json: {logged_in: true, user: @user.as_json(except: [password_digest])}
+    else
+      render json: {status: 401, errors: ['credentials are incorrect']}
+    end
   end
 
-  def create
-    user = User.find_by(username: params[:username])
-    if user.try(:authenticate, params[:password])
-      session[:user_id] = user.user_id
+  def is_logged_in?
+    # Check if the User is currently logged-in
+    if logged_in? && current_user
+      render json: {
+        logged_in: true,
+        user: current_user.as_json(except: [password_digest])
+      }
     else
-      session[:user_id] = nil
-      head :no_content
+      render json: {
+        logged_in: false,
+      }
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    head :no_content
+    # Log the user out
+    logout!
+    render json: {status: 200, logged_out: true}
   end
 end
