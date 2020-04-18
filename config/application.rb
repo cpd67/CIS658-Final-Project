@@ -33,5 +33,13 @@ module MoneyTrailApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # https://edgeguides.rubyonrails.org/api_app.html#using-session-middlewares
+    # https://stackoverflow.com/questions/15342710/adding-cookie-session-store-back-to-rails-api-app
+    # https://medium.com/@kevin.ngao/hi-i-was-reading-over-your-tutorial-and-found-out-that-it-didnt-work-for-me-the-cookies-were-9b5626e2304d#--responses
+    # Cookies won't work when generating an API-only project, so we have to add that functionality back in.
+    config.session_store :cookie_store, key: '_money_trail'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end

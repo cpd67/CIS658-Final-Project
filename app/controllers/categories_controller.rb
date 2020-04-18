@@ -3,11 +3,11 @@ class CategoriesController < ApplicationController
     before_action :set_user_post, only: [:show, :update, :destroy]
 
     def index
-        render json: => @user.categories.as_json(:except => [:user_id])
+        render json: @user.categories.as_json(:except => [:user_id])
     end
 
     def show
-        render json: => @category.as_json(:except => [:user_id])
+        render json: @category.as_json(:except => [:user_id])
     end
 
     def create
