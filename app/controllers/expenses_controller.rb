@@ -37,6 +37,6 @@ class ExpensesController < ApplicationController
         end
 
         def set_user_post
-            @expense = @user.expenses.find_by!(id: params[:id]) if @expense
+            @expense = @user.expenses.find_by!(id: params[:id])
         end
 end

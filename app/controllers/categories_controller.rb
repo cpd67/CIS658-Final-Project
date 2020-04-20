@@ -35,6 +35,6 @@ class CategoriesController < ApplicationController
         end
 
         def set_user_post
-            @category = @user.categories.find_by!(id: params[:id]) if @category
+            @category = @user.categories.find_by!(id: params[:id])
         end
 end
