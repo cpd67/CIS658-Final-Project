@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         def set_user
             # Set the current user. Only allow if the currently logged-in User is viewing their own information.
             @user = User.find(params[:id])
-            if current_user != @user
+            if !authorized_user?
                 render json: {status: 401, errors: ["You cannot do that."]}
             end
         end

@@ -15,6 +15,10 @@ class ApplicationController < ActionController::API
         session.clear
     end
 
+    def authorized_user?
+        @user == current_user
+    end
+
     def current_user
         @current_user ||= User.find(session[:user_id]) if logged_in?
     end
