@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user.try(:authenticate, params[:password])
       login!
-      render json: {logged_in: true, user: @user.as_json(except: [:password_digest])}
+      json_response({logged_in: true, user: @user.as_json(except: [:password_digest])})
     else
-      render json: {status: 401, errors: ['credentials are incorrect']}
+      json_response({errors: ['Username or password is incorrect. Please try again.']}, 401);
     end
   end
 

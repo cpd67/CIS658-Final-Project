@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
         def set_user
             @user = User.find(params[:user_id])
             if !authorized_user?
-                render json: {status: 401, errors: ["You cannot do that."]}
+                json_response("You cannot do that.", 401);
             end
         end
 
