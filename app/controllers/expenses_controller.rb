@@ -1,9 +1,11 @@
+# Handles requests for Expense information
+# The following resources were helpful when writing this controller:
+# https://stackoverflow.com/questions/14824551/rendering-json-in-controller/14824660
+# https://stackoverflow.com/questions/15397537/rails-model-to-hash-exclude-attributes
 class ExpensesController < ApplicationController
     before_action :set_user
     before_action :set_user_post, only: [:show, :update, :destroy]
 
-    # https://stackoverflow.com/questions/14824551/rendering-json-in-controller/14824660
-    # https://stackoverflow.com/questions/15397537/rails-model-to-hash-exclude-attributes
     def index
         render json: @user.expenses.as_json(:except => [:user_id, :category_id], :include => :category)
     end

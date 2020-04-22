@@ -1,3 +1,4 @@
+# Handles request for Category information
 class CategoriesController < ApplicationController
     before_action :set_user
     before_action :set_user_post, only: [:show, :update, :destroy]

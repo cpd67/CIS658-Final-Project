@@ -1,3 +1,5 @@
+# Handle requests for User information
+# The following resources were helpful when writing this controller:
 # Agile Web Development with Rails 6 by Sam Ruby & Dave Bryant Copeland
 # https://medium.com/how-i-get-it/react-with-rails-user-authentication-8977e98762f2
 class UsersController < ApplicationController
