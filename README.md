@@ -2,6 +2,7 @@ This houses the REST API for the Money Trail app.
 
 # Steps to run locally
 1). bundle install
+
 2). rails -s -p 3001
 
 Note that you may need to create a User before attempting to use the API. See the API section below.
